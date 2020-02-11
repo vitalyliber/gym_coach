@@ -46,7 +46,12 @@ function Card({ images, title, desc, exercise_group }) {
     <div className="col-md-6">
       <div>
         <div className="card mb-3">
-          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+          <Carousel
+            autoPlay={false}
+            activeIndex={activeIndex}
+            next={next}
+            previous={previous}
+          >
             <CarouselIndicators
               items={images}
               activeIndex={activeIndex}
