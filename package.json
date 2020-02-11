@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "git push dokku@casply.com:gym_coach master"
   },
   "dependencies": {
     "axios": "^0.19.2",
