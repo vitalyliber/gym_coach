@@ -47,6 +47,7 @@ function Card({ images, title, desc, exercise_group }) {
       <div>
         <div className="card mb-3">
           <Carousel
+            interval={false}
             autoPlay={false}
             activeIndex={activeIndex}
             next={next}
