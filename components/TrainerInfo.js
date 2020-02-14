@@ -25,7 +25,7 @@ const TrainerInfo = () => {
             href="tel:+79034516625"
             className="mb-3 d-block btn btn-block btn-dark"
           >
-            + 7(996)376-19-78
+            + 7(903)451-66-25
           </a>
         </div>
       </div>
