@@ -13,7 +13,7 @@ function HomePage({ exercises }) {
         Автоматический подбор тренировок
       </h5>
       <br />
-      <ExercisesList exercises={exercises} />
+      <ExercisesList exercises={exercises.exercises.list} />
       <TrainerInfo />
     </div>
   );

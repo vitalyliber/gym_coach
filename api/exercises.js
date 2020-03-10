@@ -8,7 +8,6 @@ export const fetchExercises = (params = {}) => {
       "Content-type": "application/json"
     },
     params: {
-      _sort: 'exercise_group:ASC',
       ...params
     },
     method: "GET",

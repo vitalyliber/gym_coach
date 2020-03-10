@@ -1,7 +1,7 @@
 import React from "react";
 import { UncontrolledCarousel } from "reactstrap";
 
-function Card({ images, title, desc, exercise_group }) {
+function Card({ images, title, desc, group }) {
   return (
     <div className="col-md-6">
       <div>
@@ -10,7 +10,7 @@ function Card({ images, title, desc, exercise_group }) {
             interval={false}
             autoPlay={false}
             items={images.map(image => ({
-              src: `https://imgproxy.casply.com/unsafe/s:700:700/plain/${image.url}`,
+              src: image.url,
               altText: title,
               caption: "",
               header: "",
@@ -20,7 +20,7 @@ function Card({ images, title, desc, exercise_group }) {
           <div className="card-body">
             <h3>{title}</h3>
             <span className="badge badge-success ">
-              {exercise_group.name_ru}
+              {group.title}
             </span>
             <p>{desc}</p>
           </div>

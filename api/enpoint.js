@@ -1,1 +1,1 @@
-export const endpoint = "https://strapi.casply.com";
+export const endpoint = "https://gym-server.casply.com";
