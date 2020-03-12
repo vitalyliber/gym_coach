@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { vkAuthEndpoint } from "../api/enpoint";
 
-const Header = () => {
+const Header = ({ secret_token }) => {
+  const [authorized, setAuthorized] = useState(false);
+  useEffect(() => {
+    if (process.browser && (Cookies.get("secret_token") || secret_token)) {
+      setAuthorized(true);
+    }
+  }, []);
   return (
     <>
       <Head>
@@ -21,6 +29,22 @@ const Header = () => {
               <Link href="/">
                 <a className="navbar-brand">Virtual Gym Coach</a>
               </Link>
+              {authorized ? (
+                <a
+                  style={{ cursor: "pointer" }}
+                  onClick={e => {
+                    e.preventDefault();
+                    Cookies.remove("secret_token");
+                    setAuthorized(false);
+                  }}
+                >
+                  Выйти
+                </a>
+              ) : (
+                <a href={vkAuthEndpoint} style={{ cursor: "pointer" }}>
+                  Войти
+                </a>
+              )}
             </div>
           </div>
         </div>
