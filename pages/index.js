@@ -4,8 +4,10 @@ import { fetchExercises } from "../api/exercises";
 import Header from "../components/Header";
 import ExercisesList from "../components/ExercisesList";
 import TrainerInfo from "../components/TrainerInfo";
+import ExercisesPackages from "../components/ExercisesPackages";
+import { fetchExercisePackages } from "../api/exercises_packages";
 
-function HomePage({ exercises, query }) {
+function HomePage({ exercises, exercisePackages, query }) {
   const { secret_token } = query;
   useEffect(() => {
     if (process.browser && secret_token) {
@@ -18,11 +20,23 @@ function HomePage({ exercises, query }) {
     <div>
       <Header secret_token={secret_token} />
       <br />
-      <h1 className="text-center">Виртуальный тренер</h1>
-      <h5 className="text-center text-black-50">
-        Автоматический подбор тренировок
-      </h5>
+      <h2 className="text-center">Виртуальный тренер</h2>
       <br />
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <h5 className="text-black-50 mb-3">Комплексы упражнений</h5>
+          </div>
+        </div>
+      </div>
+      <ExercisesPackages exercisePackages={exercisePackages} />
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <h5 className="text-black-50 mb-3 mt-3">Все упражнения</h5>
+          </div>
+        </div>
+      </div>
       <ExercisesList exercises={exercises.exercises.list} />
       <TrainerInfo />
     </div>
@@ -33,11 +47,13 @@ export default HomePage;
 
 HomePage.getInitialProps = async ({ query }) => {
   let exercises = [];
+  let exercisePackages = [];
   try {
     exercises = await fetchExercises();
+    exercisePackages = await fetchExercisePackages();
   } catch (e) {
     console.log(e.response);
   }
 
-  return { exercises, query };
+  return { exercises, exercisePackages, query };
 };
