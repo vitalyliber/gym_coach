@@ -25,7 +25,7 @@ const handler = async (req, res) => {
     res.end();
   } catch (e) {
     res.statusCode = 400;
-    res.end(JSON.stringify({ errors: "Auth error" }));
+    res.end(JSON.stringify({ errors: "Auth error", error_desc: e.message }));
   }
 };
 
