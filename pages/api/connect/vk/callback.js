@@ -3,7 +3,7 @@ import axios from "axios";
 const handler = async (req, res) => {
   try {
     const result = await axios({
-      url: "http://localhost:3001/vk/sessions",
+      url: process.env.VK_SERVER_URL,
       headers: {
         "Content-type": "application/json"
       },
