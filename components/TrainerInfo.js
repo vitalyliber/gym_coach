@@ -22,10 +22,24 @@ const TrainerInfo = () => {
             фитнес-центра
           </p>
           <a
+            target="_blank"
+            href="https://wa.me/79034516625/?text=Я%20хочу%20записаться%20на%20тренировку"
+            className="mb-3 d-block btn btn-block btn-success"
+          >
+            WhatsApp
+          </a>
+          <a
+            target="_blank"
+            href="https://instagram.com/shmer1988"
+            className="mb-3 d-block btn btn-block btn-info"
+          >
+            Instagram
+          </a>
+          <a
             href="tel:+79034516625"
             className="mb-3 d-block btn btn-block btn-dark"
           >
-            + 7(903)451-66-25
+            Позвонить
           </a>
         </div>
       </div>

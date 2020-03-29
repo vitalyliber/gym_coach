@@ -20,35 +20,41 @@ const Header = ({ secret_token }) => {
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossOrigin="anonymous"
         />
-        <title>Virtual Gym Coach</title>
+        <title>VirtualGym</title>
       </Head>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
-          <div className="row">
-            <div className="col">
-              <Link href="/">
-                <a className="navbar-brand">Virtual Gym Coach</a>
-              </Link>
-              {authorized ? (
-                <a
-                  style={{ cursor: "pointer" }}
-                  onClick={e => {
-                    e.preventDefault();
-                    Cookies.remove("secret_token");
-                    setAuthorized(false);
-                  }}
-                >
-                  Выйти
-                </a>
-              ) : (
-                <a href={vkAuthEndpoint} style={{ cursor: "pointer" }}>
-                  Войти
-                </a>
-              )}
-            </div>
-          </div>
+
+
+      <nav className="navbar navbar-light bg-light ">
+        <div className="container justify-content-between">
+        <Link href="/">
+          <a className="navbar-brand">
+            <span>Virtual</span>Gym
+          </a>
+        </Link>
+
+        {authorized ? (
+          <a
+            style={{ cursor: "pointer" }}
+            onClick={e => {
+              e.preventDefault();
+              Cookies.remove("secret_token");
+              setAuthorized(false);
+            }}
+          >
+            Выйти
+          </a>
+        ) : (
+          <a href={vkAuthEndpoint} style={{ cursor: "pointer" }}>
+            Войти
+          </a>
+        )}
         </div>
       </nav>
+      <style jsx>{`
+        span {
+          color: #f74c6a;
+        }
+      `}</style>
     </>
   );
 };
