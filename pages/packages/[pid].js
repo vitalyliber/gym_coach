@@ -1,22 +1,39 @@
+import useSWR from "swr";
 import Header from "../../components/Header";
 import ExercisesList from "../../components/ExercisesList";
 import { fetchExercisePackage } from "../../api/exercises_packages";
+import Error from "../../components/Error";
+import Loading from "../../components/Loading";
 
-function Packages({ exercises, exercisePackage, query }) {
+function Packages({ query }) {
+  const { pid } = query;
+  const {
+    data: exercisesData,
+    error: exercisesError
+  } = useSWR(`/api/exercisesPackage/${pid}`, () =>
+    fetchExercisePackage({ id: pid })
+  );
+  if (exercisesError) return <Error />;
   return (
     <div>
       <Header />
       <br />
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <h1>{exercisePackage.title}</h1>
-            <p>{exercisePackage.desc}</p>
+      {!exercisesData ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <h1>{exercisesData.package.title}</h1>
+                <p>{exercisesData.package.desc}</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <br />
-      <ExercisesList exercises={exercises} />
+          <br />
+          <ExercisesList exercises={exercisesData.exercises} />
+        </>
+      )}
     </div>
   );
 }
@@ -24,16 +41,5 @@ function Packages({ exercises, exercisePackage, query }) {
 export default Packages;
 
 Packages.getInitialProps = async ({ query }) => {
-  const { pid } = query;
-  let exercises = [];
-  let exercisePackage = {};
-  try {
-    const response = await fetchExercisePackage({ id: pid });
-    exercises = response.exercises;
-    exercisePackage = response.package;
-  } catch (e) {
-    console.log(e.response);
-  }
-
-  return { exercises, exercisePackage, query };
+  return { query };
 };

@@ -15,7 +15,7 @@ const ExercisesGroups = ({ exerciseGroups }) => {
         <div className="row">
           {exerciseGroups.map(el => {
             return (
-              <div className="col-md-6 mb-3">
+              <div key={el.id} className="col-md-6 mb-3">
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title">{el.title}</h5>

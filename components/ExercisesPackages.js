@@ -15,12 +15,12 @@ const ExercisesPackages = ({ exercisePackages }) => {
         <div className="row">
           {exercisePackages.map(el => {
             return (
-              <div className="col-md-6 mb-3">
+              <div key={el.id} className="col-md-6 mb-3">
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title">{el.title}</h5>
                     {el.exercise_groups.map(group => (
-                      <span className="badge badge-info mr-2">
+                      <span key={group.id} className="badge badge-info mr-2">
                         {group.title}
                       </span>
                     ))}
