@@ -25,7 +25,7 @@ const ExercisesPackages = ({ exercisePackages }) => {
                       </span>
                     ))}
                     <Link href="/packages/[pid]" as={`/packages/${el.id}`}>
-                      <a className="btn btn-primary d-block mt-3 btn-sm">
+                      <a className="stretched-link btn btn-primary d-block mt-3 btn-sm">
                         Тренироваться
                       </a>
                     </Link>
