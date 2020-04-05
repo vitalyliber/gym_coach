@@ -1,37 +1,32 @@
 import useSWR from "swr";
 import Header from "../../components/Header";
-import { fetchExercisePackage } from "../../api/exercises_packages";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
-import PackageExercisesList from "../../components/PackageExercisesList";
+import { fetchExercise } from "../../api/exercises";
+import Card from "../../components/Card";
 
 function Packages({ query }) {
   const { pid } = query;
-  const {
-    data: exercisesData,
-    error: exercisesError
-  } = useSWR(`/api/exercisesPackage/${pid}`, () =>
-    fetchExercisePackage({ id: pid })
+  const { data, error } = useSWR(`/api/exercise/${pid}`, () =>
+    fetchExercise({ id: pid })
   );
-  if (exercisesError) return <Error />;
+  if (error) return <Error />;
   return (
     <div>
       <Header />
       <br />
-      {!exercisesData ? (
+      {!data ? (
         <Loading />
       ) : (
         <>
           <div className="container">
             <div className="row">
               <div className="col">
-                <h3>{exercisesData.package.title}</h3>
-                <p>{exercisesData.package.desc}</p>
+                <h3 className="mb-3">Упражнение</h3>
               </div>
             </div>
           </div>
-          <br />
-          <PackageExercisesList exercises={exercisesData.exercises} />
+          <Card {...data} />
         </>
       )}
     </div>

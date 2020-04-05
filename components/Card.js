@@ -19,7 +19,7 @@ function Card({ images, title, desc, group }) {
           />
           <div className="card-body">
             <h3>{title}</h3>
-            <span className="badge badge-success ">
+            <span className="badge badge-success mb-3">
               {group.title}
             </span>
             <p>{desc}</p>
