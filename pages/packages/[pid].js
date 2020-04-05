@@ -30,7 +30,6 @@ function Packages({ query }) {
               </div>
             </div>
           </div>
-          <br />
           <PackageExercisesList exercises={exercisesData.exercises} />
         </>
       )}
