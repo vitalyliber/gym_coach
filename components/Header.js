@@ -20,6 +20,12 @@ const Header = ({ secret_token }) => {
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossOrigin="anonymous"
         />
+        <meta name="Description" content="The best gym exercises to do at home" />
+        <meta name="twitter:title" content="VirtualGym" />
+        <meta
+          name="twitter:description"
+          content="The best gym exercises to do at home"
+        />
         <title>VirtualGym</title>
       </Head>
 
