@@ -14,12 +14,6 @@ const Header = ({ secret_token }) => {
   return (
     <>
       <Head>
-        <link
-          rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossOrigin="anonymous"
-        />
         <meta name="Description" content="The best gym exercises to do at home" />
         <meta name="twitter:title" content="VirtualGym" />
         <meta
@@ -30,7 +24,7 @@ const Header = ({ secret_token }) => {
       </Head>
 
 
-      <nav className="navbar navbar-light bg-light ">
+      <nav className="navbar navbar-light bg-light">
         <div className="container justify-content-between">
         <Link href="/">
           <a className="navbar-brand">
