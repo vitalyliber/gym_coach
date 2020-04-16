@@ -14,13 +14,17 @@ const Header = ({ secret_token }) => {
   return (
     <>
       <Head>
+        <title>VirtualGym</title>
         <meta name="Description" content="The best gym exercises to do at home" />
+        <link rel="shortcut icon" type="image/x-icon" href="https://gym.casply.com/favicon.ico" />
+        <link rel="apple-touch-icon" type="image/png" href="https://gym.casply.com/favicon.png" />
         <meta name="twitter:title" content="VirtualGym" />
         <meta
           name="twitter:description"
           content="The best gym exercises to do at home"
         />
-        <title>VirtualGym</title>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://ahegao.casply.com/twitter-card.jpg" />
       </Head>
 
 
