@@ -24,7 +24,7 @@ const Header = ({ secret_token }) => {
           content="The best gym exercises to do at home"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://ahegao.casply.com/twitter-card.jpg" />
+        <meta name="twitter:image" content="https://gym.casply.com/twitter-card.jpg" />
       </Head>
 
 
