@@ -1,6 +1,7 @@
 import Header from "../../components/Header";
 import { fetchExercise } from "../../api/exercises";
-import { UncontrolledCarousel } from "reactstrap";
+import CustomControlledCarousel from "../../components/CustomControlledCarousel";
+import React from "react";
 
 function Packages({ data }) {
   return (
@@ -18,17 +19,7 @@ function Packages({ data }) {
         <div className="row justify-content-md-center">
           <div className="col-12 col-sm-12 col-md-12 col-lg-8">
             <div className="card mb-3">
-              <UncontrolledCarousel
-                interval={false}
-                autoPlay={false}
-                items={data.images.map(image => ({
-                  src: image.url,
-                  altText: data.title,
-                  caption: "",
-                  header: "",
-                  key: image.id
-                }))}
-              />
+              <CustomControlledCarousel items={data.images} />
               <div className="card-body">
                 <span className="badge badge-success mb-3">
                   {data.group.title}

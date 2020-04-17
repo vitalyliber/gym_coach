@@ -1,32 +1,21 @@
 import React from "react";
-import { UncontrolledCarousel } from "reactstrap";
+import Link from "next/link";
+import CustomControlledCarousel from "./CustomControlledCarousel";
 
-function Card({ images, title, desc, group }) {
+function Card({ images, title, group, id }) {
   return (
-    <div className="col-md-6">
-      <div>
-        <div className="card mb-3">
-          <UncontrolledCarousel
-            interval={false}
-            autoPlay={false}
-            items={images.map(image => ({
-              src: image.url,
-              altText: title,
-              caption: "",
-              header: "",
-              key: image.id
-            }))}
-          />
-          <div className="card-body">
-            <h3>{title}</h3>
-            <span className="badge badge-success mb-3">
-              {group.title}
-            </span>
-            <p>{desc}</p>
-          </div>
+    <>
+      <div className="card m-2 mb-3 m-sm-0 mb-sm-3">
+        <CustomControlledCarousel items={images}/>
+        <div className="card-body">
+          <h3>{title}</h3>
+          <span className="badge badge-success mb-3">{group.title}</span>
+          <Link href="/exercises/[pid]" as={`/exercises/${id}`}>
+            <a className="btn-block btn btn-sm btn-light mt-3">Подробнее</a>
+          </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

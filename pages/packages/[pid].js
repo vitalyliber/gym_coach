@@ -25,8 +25,7 @@ function Packages({ query }) {
           <div className="container">
             <div className="row">
               <div className="col">
-                <h3>{exercisesData.package.title}</h3>
-                <p>{exercisesData.package.desc}</p>
+                <h3 className="mb-4">{exercisesData.package.title}</h3>
               </div>
             </div>
           </div>

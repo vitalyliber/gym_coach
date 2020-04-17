@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import CustomControlledCarousel from "./CustomControlledCarousel";
 
 const ExercisesGroups = ({ exerciseGroups }) => {
   return (
@@ -18,11 +19,7 @@ const ExercisesGroups = ({ exerciseGroups }) => {
               <div key={el.id} className="col-6 col-sm-6 col-md-4 col-lg-3 mb-3">
                 <div className="card">
                   {el.image && (
-                    <img
-                      className="card-img-top"
-                      src={el.image.url}
-                      alt="Card image cap"
-                    />
+                    <CustomControlledCarousel items={[el.image]} />
                   )}
                   <div className="card-body">
                     <h5 className="card-title">{el.title}</h5>
