@@ -6,13 +6,6 @@ const ExercisesPackages = ({ exercisePackages }) => {
     <>
       <div className="container">
         <div className="row">
-          <div className="col">
-            <h5 className="text-black-50 mb-3">Тренировки</h5>
-          </div>
-        </div>
-      </div>
-      <div className="container">
-        <div className="row">
           {exercisePackages.map(el => {
             return (
               <div key={el.id} className="col-md-6 mb-3">
