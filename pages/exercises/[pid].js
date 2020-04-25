@@ -1,9 +1,20 @@
+import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import { fetchExercise } from "../../api/exercises";
 import CustomControlledCarousel from "../../components/CustomControlledCarousel";
 import React from "react";
+import Loading from "../../components/Loading";
 
 function Packages({ data }) {
+  const router = useRouter();
+  if (router.isFallback) {
+    return (
+      <>
+        <Header />
+        <Loading />
+      </>
+    );
+  }
   return (
     <div>
       <Header />
@@ -36,9 +47,14 @@ function Packages({ data }) {
 
 export default Packages;
 
-export async function getServerSideProps({ query }) {
-  const { pid } = query;
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true
+  };
+}
+export async function getStaticProps({ params }) {
+  const { pid } = params;
   const data = await fetchExercise({ id: pid });
-  // Pass data to the page via props
-  return { props: { data } };
+  return { revalidate: 1, props: { data } };
 }
