@@ -20,7 +20,7 @@ function Packages({ exercisesData }) {
     const string = arrayOfTitles.join(", ");
     return `Тренировка состоит из: ${string}`;
   }, [exercises, title]);
-  const seoTitle = useMemo(() => `Тренировка ${title}`, [title]);
+  const seoTitle = useMemo(() => `Тренировка "${title}"`, [title]);
   if (router.isFallback) {
     return (
       <>
