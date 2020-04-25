@@ -5,7 +5,6 @@ import Header from "../components/Header";
 import { fetchExerciseGroups } from "../api/exercises_groups";
 import ExercisesGroups from "../components/ExercisesGroups";
 import Link from "next/link";
-import Loading from "../components/Loading";
 import { fetchCollections } from "../api/collections";
 import Collections from "../components/Collections";
 

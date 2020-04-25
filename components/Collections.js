@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import getGenderName from "../utils/getGenderName";
 
 const Collections = ({ list }) => {
   return (
@@ -12,7 +13,7 @@ const Collections = ({ list }) => {
               <div key={id} className="card">
                 <div className="card-body">
                   <h5 className="card-title">
-                    {title_ru} для {gender === "male" ? "мужчин" : "женщин"}
+                    {title_ru} для {getGenderName(gender)}
                   </h5>
                   <p className="card-text">{desc_ru}</p>
                   <Link href="/collections/[pid]" as={`/collections/${id}`}>

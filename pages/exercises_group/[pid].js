@@ -5,6 +5,7 @@ import { fetchExercises } from "../../api/exercises";
 import { fetchExerciseGroup } from "../../api/exercises_groups";
 import Loading from "../../components/Loading";
 import React from "react";
+import Head from "next/head";
 
 function ExercisesGroup({ exerciseGroupData, groupedExercisesData }) {
   const router = useRouter();
@@ -17,9 +18,20 @@ function ExercisesGroup({ exerciseGroupData, groupedExercisesData }) {
       </>
     );
   }
+
+  const { title, image } = exerciseGroupData;
+  const desc = `Список упражнений для категории ${title}`;
+
   return (
     <div>
       <Header />
+      <Head>
+        <title>{title}</title>
+        <meta name="Description" content={desc} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={desc} />
+        <meta name="twitter:image" content={image.url} />
+      </Head>
       <br />
       <div className="container">
         <div className="row">

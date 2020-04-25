@@ -4,10 +4,21 @@ import Loading from "../../components/Loading";
 import { fetchExercisePackages } from "../../api/exercises_packages";
 import ExercisesPackages from "../../components/ExercisesPackages";
 import { fetchCollection } from "../../api/collections";
-import React from "react";
+import React, { useMemo } from "react";
+import Head from "next/head";
+import getGenderName from "../../utils/getGenderName";
 
 function ExercisesGroup({ data, collectionData }) {
   const router = useRouter();
+  const {
+    collection: { title_ru, gender, desc_ru }
+  } = collectionData || { collection: {} };
+  const title = useMemo(() => {
+    return `Тренировки для ${getGenderName(gender)}`;
+  }, [title_ru, gender]);
+  const seoTitle = useMemo(() => {
+    return `${title} (${(title_ru || "").toLowerCase()})`;
+  }, [title]);
   if (router.isFallback) {
     return (
       <>
@@ -20,23 +31,24 @@ function ExercisesGroup({ data, collectionData }) {
   return (
     <div>
       <Header />
+      <Head>
+        <title>{seoTitle}</title>
+        <meta name="Description" content={desc_ru} />
+        <meta name="twitter:title" content={seoTitle} />
+        <meta name="twitter:description" content={desc_ru} />
+      </Head>
       <br />
       <div className="container">
         <div className="row">
           <div className="col">
-            <h3 className="mb-3">{collectionData.collection.title_ru}</h3>
+            <h3 className="mb-3">{title_ru}</h3>
           </div>
         </div>
       </div>
       <div className="container">
         <div className="row">
           <div className="col">
-            <h5 className="text-black-50 mb-3">
-              Тренировки для{" "}
-              {collectionData.collection.gender === "male"
-                ? "мужчин"
-                : "женщин"}
-            </h5>
+            <h5 className="text-black-50 mb-3">{title}</h5>
           </div>
         </div>
       </div>

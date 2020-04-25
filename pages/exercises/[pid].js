@@ -29,19 +29,8 @@ function Packages({ data }) {
       <Head>
         <title>{title}</title>
         <meta name="Description" content={desc} />
-        <link
-          rel="shortcut icon"
-          type="image/x-icon"
-          href="https://gym.casply.com/favicon.ico"
-        />
-        <link
-          rel="apple-touch-icon"
-          type="image/png"
-          href="https://gym.casply.com/favicon.png"
-        />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={desc} />
-        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={images[0] && images[0].url} />
       </Head>
       <br />
