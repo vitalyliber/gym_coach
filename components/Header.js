@@ -10,7 +10,7 @@ const Header = ({ secret_token }) => {
     if (process.browser && (Cookies.get("secret_token") || secret_token)) {
       setAuthorized(true);
     }
-  }, []);
+  }, [secret_token]);
   return (
     <>
       <Head>

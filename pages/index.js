@@ -18,7 +18,7 @@ function HomePage({ groupData, collectionData }) {
       Cookies.set("secret_token", secret_token, { expires: 365 * 3 });
       window.history.pushState({}, document.title, "/");
     }
-  }, []);
+  }, [secret_token]);
 
   return (
     <div>
