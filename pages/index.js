@@ -24,14 +24,8 @@ function HomePage({ groupData, collectionData }) {
     <div>
       <Header secret_token={secret_token} />
       <br />
-      {!groupData || !collectionData ? (
-        <Loading />
-      ) : (
-        <>
-          <Collections list={collectionData} />
-          <ExercisesGroups exerciseGroups={groupData} />
-        </>
-      )}
+      <Collections list={collectionData} />
+      <ExercisesGroups exerciseGroups={groupData} />
       <div className="container">
         <div className="row">
           <div className="col">

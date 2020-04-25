@@ -1,43 +1,47 @@
-import useSWR from "swr";
+import React from "react";
+import {useRouter} from "next/router";
 import Header from "../../components/Header";
 import { fetchExercisePackage } from "../../api/exercises_packages";
-import Error from "../../components/Error";
 import Loading from "../../components/Loading";
 import PackageExercisesList from "../../components/PackageExercisesList";
 
-function Packages({ query }) {
-  const { pid } = query;
-  const {
-    data: exercisesData,
-    error: exercisesError
-  } = useSWR(`/api/exercisesPackage/${pid}`, () =>
-    fetchExercisePackage({ id: pid })
-  );
-  if (exercisesError) return <Error />;
+function Packages({ exercisesData }) {
+  const router = useRouter();
+  if (router.isFallback) {
+    return (
+      <>
+        <Header />
+        <br />
+        <Loading />
+      </>
+    );
+  }
   return (
     <div>
       <Header />
       <br />
-      {!exercisesData ? (
-        <Loading />
-      ) : (
-        <>
-          <div className="container">
-            <div className="row">
-              <div className="col">
-                <h3 className="mb-4">{exercisesData.package.title}</h3>
-              </div>
-            </div>
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <h3 className="mb-4">{exercisesData.package.title}</h3>
           </div>
-          <PackageExercisesList exercises={exercisesData.exercises} />
-        </>
-      )}
+        </div>
+      </div>
+      <PackageExercisesList exercises={exercisesData.exercises} />
     </div>
   );
 }
 
 export default Packages;
 
-Packages.getInitialProps = async ({ query }) => {
-  return { query };
-};
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true
+  };
+}
+export async function getStaticProps({ params }) {
+  const { pid } = params;
+  const exercisesData = await fetchExercisePackage({ id: pid });
+  return { revalidate: 1, props: { exercisesData } };
+}
