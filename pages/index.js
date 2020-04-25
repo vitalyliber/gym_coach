@@ -1,25 +1,17 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import useSWR from "swr";
 import Header from "../components/Header";
 import { fetchExerciseGroups } from "../api/exercises_groups";
 import ExercisesGroups from "../components/ExercisesGroups";
 import Link from "next/link";
-import Error from "../components/Error";
 import Loading from "../components/Loading";
 import { fetchCollections } from "../api/collections";
 import Collections from "../components/Collections";
 
-function HomePage({ query }) {
-  const { data: groupData, error: groupError } = useSWR(
-    "/api/groups/all",
-    fetchExerciseGroups
-  );
-  const { data: collectionData, error: collectionError } = useSWR(
-    "/api/collections/all",
-    fetchCollections
-  );
-  console.log("collectionData", collectionData);
+function HomePage({ groupData, collectionData }) {
+  const { query } = useRouter();
+  console.log(query);
   const { secret_token } = query;
   useEffect(() => {
     if (process.browser && secret_token) {
@@ -27,8 +19,6 @@ function HomePage({ query }) {
       window.history.pushState({}, document.title, "/");
     }
   }, []);
-
-  if (groupError || collectionError) return <Error />;
 
   return (
     <div>
@@ -59,6 +49,8 @@ function HomePage({ query }) {
 
 export default HomePage;
 
-HomePage.getInitialProps = async ({ query }) => {
-  return { query };
-};
+export async function getStaticProps({ params }) {
+  const groupData = await fetchExerciseGroups();
+  const collectionData = await fetchCollections();
+  return { revalidate: 1, props: { groupData, collectionData } };
+}

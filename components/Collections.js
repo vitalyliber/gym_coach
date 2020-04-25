@@ -9,7 +9,7 @@ const Collections = ({ list }) => {
           <h5 className="text-muted mb-4">Пакеты тренировок</h5>
           <div className="card-columns">
             {list.map(({ title_ru, desc_ru, gender, id }) => (
-              <div className="card">
+              <div key={id} className="card">
                 <div className="card-body">
                   <h5 className="card-title">
                     {title_ru} для {gender === "male" ? "мужчин" : "женщин"}
