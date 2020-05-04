@@ -11,10 +11,10 @@ import Footer from "../../../components/Footer";
 function ExercisesGroup({ data, collectionData }) {
   const router = useRouter();
   const {
-    collection: { title_ru, gender, desc_ru }
+    collection: { title, desc }
   } = collectionData || { collection: {} };
   const seoTitle = useMemo(() => {
-    return `(${(title_ru || "").toLowerCase()})`;
+    return `(${(title || "").toLowerCase()})`;
   }, []);
   if (router.isFallback) {
     return (
@@ -30,22 +30,22 @@ function ExercisesGroup({ data, collectionData }) {
       <Header />
       <Head>
         <title>{seoTitle}</title>
-        <meta name="Description" content={desc_ru} />
+        <meta name="Description" content={desc} />
         <meta name="twitter:title" content={seoTitle} />
-        <meta name="twitter:description" content={desc_ru} />
+        <meta name="twitter:description" content={desc} />
       </Head>
       <br />
       <div className="container">
         <div className="row">
           <div className="col">
-            <h3 className="mb-3">{title_ru}</h3>
+            <h3 className="mb-3">{title}</h3>
           </div>
         </div>
       </div>
       <div className="container">
         <div className="row">
           <div className="col">
-            <p className="text-black-50 mb-3">{desc_ru}</p>
+            <p className="text-black-50 mb-3">{desc}</p>
           </div>
         </div>
       </div>

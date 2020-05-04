@@ -13,13 +13,13 @@ const Collections = ({ list }) => {
         <div className="col">
           <h5 className="text-muted mb-4">{i18n.t("workout_programs")}</h5>
           <div className="card-columns">
-            {list.map(({ title_ru, desc_ru, id }) => (
+            {list.map(({ title, desc, id }) => (
               <div key={id} className="card">
                 <div className="card-body">
                   <h5 className="card-title">
-                    {title_ru}
+                    {title}
                   </h5>
-                  <p className="card-text">{desc_ru}</p>
+                  <p className="card-text">{desc}</p>
                   <Link
                     href="/[lang]/collections/[pid]"
                     as={`/${lang}/collections/${id}`}
