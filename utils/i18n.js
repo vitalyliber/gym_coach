@@ -31,14 +31,16 @@ I18n.translations["ru"] = {
   rest: "Отдых",
   active: "Выполнение"
 };
-const i18nInit = ({ lang = "en", force = false }) => {
+const languages = ["ru", "en"];
+const fallback = "en";
+const i18nInit = ({ lang = fallback, force = false }) => {
   if (force) {
-    I18n.locale = lang;
+    I18n.locale = languages.includes(lang) ? lang : fallback;
   } else {
     if (process.browser) {
       const myLanguage = browserLang({
-        languages: ["ru", "en"],
-        fallback: "en"
+        languages: languages,
+        fallback
       });
       I18n.locale = myLanguage || lang;
     } else {
