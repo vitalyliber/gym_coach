@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useMemo} from "react";
 import Link from "next/link";
 import CustomControlledCarousel from "./CustomControlledCarousel";
+import { useRouter } from "next/router";
+import I18n from "../utils/i18n";
 
 const restSecondsTranslate = "Отдыхаем";
 const activeSecondsTranslate = "Выполняем";
@@ -14,6 +16,9 @@ function PackageCard({
   rest_seconds,
   active_seconds
 }) {
+  const router = useRouter();
+  const { lang } = router.query;
+  const i18n = useMemo(() => I18n({ force: true, lang: lang }), []);
   const formatValue = (label, value) => {
     if ([restSecondsTranslate, activeSecondsTranslate].includes(label)) {
       if (value > 60) {
@@ -32,7 +37,12 @@ function PackageCard({
         <CustomControlledCarousel items={images} />
         <div className="card-body">
           <h4 className="mb-3">{title}</h4>
-          <span className="badge badge-success mb-3">{group.title}</span>
+          <Link
+            href="/[lang]/exercises_group/[pid]"
+            as={`/${lang}/exercises_group/${group.id}`}
+          >
+            <a className="badge badge-info mb-3">{group.title}</a>
+          </Link>
           {[
             { label: "Подходов", value: repetitions },
             { label: "Повторений", value: executions },
@@ -42,13 +52,16 @@ function PackageCard({
           ]
             .filter(({ value }) => value > 0)
             .map(({ label, value }) => (
-              <div className="d-flex justify-content-between border-bottom border-info mb-2">
+              <div
+                key={label}
+                className="d-flex justify-content-between border-bottom border-info mb-2"
+              >
                 <h6 className="mb-1">{label}</h6>
                 <h6 className="mb-1 text-muted">{formatValue(label, value)}</h6>
               </div>
             ))}
-          <Link href="/exercises/[pid]" as={`/exercises/${id}`}>
-            <a className="btn-block btn btn-sm btn-light mt-3">Подробнее</a>
+          <Link href="/[lang]/exercises/[pid]" as={`/${lang}/exercises/${id}`}>
+            <a className="btn-block btn btn-sm btn-light mt-3">{i18n.t('details')}</a>
           </Link>
         </div>
       </div>

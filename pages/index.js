@@ -1,49 +1,53 @@
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
+import I18n from "../utils/i18n";
 import { useRouter } from "next/router";
-import Cookies from "js-cookie";
 import Header from "../components/Header";
-import { fetchExerciseGroups } from "../api/exercises_groups";
-import ExercisesGroups from "../components/ExercisesGroups";
 import Link from "next/link";
-import { fetchCollections } from "../api/collections";
-import Collections from "../components/Collections";
+import Footer from "../components/Footer";
 
-function HomePage({ groupData, collectionData }) {
+function HomePage({}) {
+  const lang = useMemo(() => I18n({}).currentLocale(), []);
   const { query } = useRouter();
-  console.log(query);
   const { secret_token } = query;
-  useEffect(() => {
-    if (process.browser && secret_token) {
-      Cookies.set("secret_token", secret_token, { expires: 365 * 3 });
-      window.history.pushState({}, document.title, "/");
-    }
-  }, [secret_token]);
 
   return (
-    <div>
-      <Header secret_token={secret_token} />
+    <div className="mainWrapper">
+      <Header secret_token={secret_token} showAuthBtn={false} />
       <br />
-      <Collections list={collectionData} />
-      <ExercisesGroups exerciseGroups={groupData} />
-      <div className="container">
+      <div className="container wrapper d-flex align-items-center">
         <div className="row">
           <div className="col">
-            <Link href="/trainers" as={"/trainers"}>
-              <a className="mt-4 mb-4 btn btn-info btn-block">
-                Онлайн сопровождение
-              </a>
-            </Link>
+            <div className="jumbotron text-center bg-dark text-white">
+              <h1 className="display-4">
+                Hey! Welcome to a world of inspiration for your exercises
+              </h1>
+              <p className="lead">
+                Build muscle, loose weight and get toned with VirtualGym at home
+              </p>
+              <Link href="/[lang]" as={`/${lang}`}>
+                <a
+                  className="btn btn-primary btn-lg mt-4"
+                  href="#"
+                  role="button"
+                >
+                  Go to website
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
+      <Footer />
+      <style jsx>{`
+        .wrapper {
+          height: calc(100vh - 152px);
+        }
+        .mainWrapper {
+          background-color: aquamarine;
+        }
+      `}</style>
     </div>
   );
 }
 
 export default HomePage;
-
-export async function getStaticProps({ params }) {
-  const groupData = await fetchExerciseGroups();
-  const collectionData = await fetchCollections();
-  return { revalidate: 1, props: { groupData, collectionData } };
-}

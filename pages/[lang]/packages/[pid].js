@@ -1,10 +1,11 @@
 import React, { useMemo } from "react";
 import { useRouter } from "next/router";
-import Header from "../../components/Header";
-import { fetchExercisePackage } from "../../api/exercises_packages";
-import Loading from "../../components/Loading";
-import PackageExercisesList from "../../components/PackageExercisesList";
+import Header from "../../../components/Header";
+import { fetchExercisePackage } from "../../../api/exercises_packages";
+import Loading from "../../../components/Loading";
+import PackageExercisesList from "../../../components/PackageExercisesList";
 import Head from "next/head";
+import Footer from "../../../components/Footer";
 
 function Packages({ exercisesData }) {
   const router = useRouter();
@@ -48,6 +49,7 @@ function Packages({ exercisesData }) {
         </div>
       </div>
       <PackageExercisesList exercises={exercises} />
+      <Footer />
     </div>
   );
 }
@@ -61,7 +63,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }) {
-  const { pid } = params;
-  const exercisesData = await fetchExercisePackage({ id: pid });
+  const { pid, lang } = params;
+  const exercisesData = await fetchExercisePackage({ id: pid, lang });
   return { revalidate: 1, props: { exercisesData } };
 }

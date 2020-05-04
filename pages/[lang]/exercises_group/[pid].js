@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
-import Header from "../../components/Header";
-import ExercisesList from "../../components/ExercisesList";
-import { fetchExercises } from "../../api/exercises";
-import { fetchExerciseGroup } from "../../api/exercises_groups";
-import Loading from "../../components/Loading";
+import Header from "../../../components/Header";
+import ExercisesList from "../../../components/ExercisesList";
+import { fetchExercises } from "../../../api/exercises";
+import { fetchExerciseGroup } from "../../../api/exercises_groups";
+import Loading from "../../../components/Loading";
 import React from "react";
 import Head from "next/head";
+import Footer from "../../../components/Footer";
 
 function ExercisesGroup({ exerciseGroupData, groupedExercisesData }) {
   const router = useRouter();
@@ -42,6 +43,7 @@ function ExercisesGroup({ exerciseGroupData, groupedExercisesData }) {
       </div>
       <br />
       <ExercisesList exercises={groupedExercisesData.exercises.list} />
+      <Footer />
     </div>
   );
 }
@@ -55,8 +57,11 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }) {
-  const { pid } = params;
-  const exerciseGroupData = await fetchExerciseGroup({ id: pid });
-  const groupedExercisesData = await fetchExercises({ exercise_group_id: pid });
+  const { pid, lang } = params;
+  const exerciseGroupData = await fetchExerciseGroup({ id: pid, lang });
+  const groupedExercisesData = await fetchExercises({
+    exercise_group_id: pid,
+    lang
+  });
   return { revalidate: 1, props: { exerciseGroupData, groupedExercisesData } };
 }

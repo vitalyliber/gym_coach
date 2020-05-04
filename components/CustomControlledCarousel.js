@@ -64,8 +64,8 @@ const CustomControlledCarousel = ({ items }) => {
       >
         <Image item={item} />
         <CarouselCaption
-          captionText={item.caption}
-          captionHeader={item.caption}
+          captionText={item.caption || ""}
+          captionHeader={item.caption || ""}
         />
       </CarouselItem>
     );

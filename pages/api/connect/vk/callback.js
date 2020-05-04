@@ -20,7 +20,7 @@ const handler = async (req, res) => {
       throw new Error("");
     }
     res.writeHead(302, {
-      Location: `/?secret_token=${token}`
+      Location: `/ru/?secret_token=${token}`
     });
     res.end();
   } catch (e) {

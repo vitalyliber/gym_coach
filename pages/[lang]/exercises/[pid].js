@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
-import Header from "../../components/Header";
-import { fetchExercise } from "../../api/exercises";
-import CustomControlledCarousel from "../../components/CustomControlledCarousel";
+import Header from "../../../components/Header";
+import { fetchExercise } from "../../../api/exercises";
+import CustomControlledCarousel from "../../../components/CustomControlledCarousel";
 import React from "react";
-import Loading from "../../components/Loading";
+import Loading from "../../../components/Loading";
 import Head from "next/head";
+import Footer from "../../../components/Footer";
 
 function Packages({ data }) {
   const router = useRouter();
@@ -54,6 +55,7 @@ function Packages({ data }) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
@@ -67,7 +69,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }) {
-  const { pid } = params;
-  const data = await fetchExercise({ id: pid });
+  const { pid, lang } = params;
+  const data = await fetchExercise({ id: pid, lang });
   return { revalidate: 1, props: { data } };
 }

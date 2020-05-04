@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import I18n from "../utils/i18n";
 
 const ExercisesPackages = ({ exercisePackages }) => {
+  const router = useRouter();
+  const { lang } = router.query;
+  const i18n = useMemo(() => I18n({ force: true, lang: lang }), []);
   return (
     <>
       <div className="container">
@@ -13,13 +18,21 @@ const ExercisesPackages = ({ exercisePackages }) => {
                   <div className="card-body">
                     <h5 className="card-title">{el.title}</h5>
                     {el.exercise_groups.map(group => (
-                      <span key={group.id} className="badge badge-info mr-2">
-                        {group.title}
-                      </span>
+                      <Link
+                        href="/[lang]/exercises_group/[pid]"
+                        as={`/${lang}/exercises_group/${el.id}`}
+                      >
+                        <a key={group.id} className="badge badge-info mr-2">
+                          {group.title}
+                        </a>
+                      </Link>
                     ))}
-                    <Link href="/packages/[pid]" as={`/packages/${el.id}`}>
-                      <a className="stretched-link btn btn-primary d-block mt-3 btn-sm">
-                        Тренироваться
+                    <Link
+                      href="/[lang]/packages/[pid]"
+                      as={`/${lang}/packages/${el.id}`}
+                    >
+                      <a className="btn btn-primary d-block mt-3 btn-sm">
+                        {i18n.t("open")}
                       </a>
                     </Link>
                   </div>

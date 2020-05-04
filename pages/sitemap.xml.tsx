@@ -22,7 +22,10 @@ Sitemap.getInitialProps = async ctx => {
   res.setHeader("content-type", "application/xml");
   const result = await fetchExercises();
   result.exercises.list.forEach(({ id, updated_at }) =>
-    addUrl({ url: `/exercises/${id}`, updated_at })
+    addUrl({ url: `/ru/exercises/${id}`, updated_at })
+  );
+  result.exercises.list.forEach(({ id, updated_at }) =>
+      addUrl({ url: `/en/exercises/${id}`, updated_at })
   );
   res.setHeader("content-type", "application/xml");
   res.end(

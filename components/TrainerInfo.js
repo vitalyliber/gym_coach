@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { useRouter } from "next/router";
+import I18n from "../utils/i18n";
 
 const TrainerInfo = () => {
+  const router = useRouter();
+  const { lang } = router.query;
+  const i18n = useMemo(() => I18n({ force: true, lang: lang }), []);
   return (
     <div className="container">
       <div className="row">
@@ -39,7 +44,7 @@ const TrainerInfo = () => {
             href="tel:+79034516625"
             className="mb-3 d-block btn btn-block btn-dark"
           >
-            Позвонить
+            {i18n.t("call")}
           </a>
         </div>
       </div>
