@@ -8,7 +8,13 @@ I18n.translations["en"] = {
   details: "Details",
   logout: "Logout",
   Login: "Login",
-  call: "Call"
+  call: "Call",
+  categories: "Categories",
+  sets: "Sets",
+  repetitions: "Repetitions",
+  weight: "Weight",
+  rest: "Rest",
+  active: "Active"
 };
 I18n.translations["ru"] = {
   workout_programs: "Пакеты тренировок",
@@ -17,7 +23,13 @@ I18n.translations["ru"] = {
   details: "Подробнее",
   logout: "Выйти",
   Login: "Войти",
-  call: "Позвонить"
+  call: "Позвонить",
+  categories: "Категории",
+  sets: "Подходов",
+  repetitions: "Повторений",
+  weight: "Вес",
+  rest: "Отдых",
+  active: "Выполнение"
 };
 const i18nInit = ({ lang = "en", force = false }) => {
   if (force) {
