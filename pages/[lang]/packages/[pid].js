@@ -16,7 +16,10 @@ function Packages({ exercisesData }) {
   const desc = useMemo(() => {
     let arrayOfTitles = [];
     exercises.forEach(el => {
-      arrayOfTitles = [...arrayOfTitles, el.exercise.title.toLowerCase()];
+      arrayOfTitles = [
+        ...arrayOfTitles,
+        (el.exercise.title || "").toLowerCase()
+      ];
     });
     const string = arrayOfTitles.join(", ");
     return `Тренировка состоит из: ${string}`;
