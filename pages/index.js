@@ -18,7 +18,7 @@ function HomePage({}) {
         <div className="row">
           <div className="col">
             <div className="jumbotron text-center bg-dark text-white">
-              <h1 className="display-4">
+              <h1 className="display">
                 Hey! Welcome to a world of inspiration for your exercises
               </h1>
               <p className="lead">
