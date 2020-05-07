@@ -14,7 +14,9 @@ I18n.translations["en"] = {
   repetitions: "Repetitions",
   weight: "Weight",
   rest: "Rest",
-  active: "Active"
+  active: "Active",
+  workout_consists_of: "Workout consists of:",
+  workout: "Workout"
 };
 I18n.translations["ru"] = {
   workout_programs: "Пакеты тренировок",
@@ -29,7 +31,9 @@ I18n.translations["ru"] = {
   repetitions: "Повторений",
   weight: "Вес",
   rest: "Отдых",
-  active: "Выполнение"
+  active: "Выполнение",
+  workout_consists_of: "Тренировка состоит из:",
+  workout: "Workout"
 };
 const languages = ["ru", "en"];
 const fallback = "en";

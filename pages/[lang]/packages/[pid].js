@@ -6,9 +6,12 @@ import Loading from "../../../components/Loading";
 import PackageExercisesList from "../../../components/PackageExercisesList";
 import Head from "next/head";
 import Footer from "../../../components/Footer";
+import I18n from "../../../utils/i18n";
 
 function Packages({ exercisesData }) {
   const router = useRouter();
+  const { lang } = router.query;
+  const i18n = useMemo(() => I18n({ force: true, lang: lang }), []);
   const {
     package: { title },
     exercises
@@ -22,9 +25,9 @@ function Packages({ exercisesData }) {
       ];
     });
     const string = arrayOfTitles.join(", ");
-    return `Тренировка состоит из: ${string}`;
+    return `${i18n.t("workout_consists_of")} ${string}`;
   }, [exercises, title]);
-  const seoTitle = useMemo(() => `Тренировка "${title}"`, [title]);
+  const seoTitle = useMemo(() => `${i18n.t("workout")} "${title}"`, [title]);
   if (router.isFallback) {
     return (
       <>
