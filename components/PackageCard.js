@@ -3,6 +3,7 @@ import Link from "next/link";
 import CustomControlledCarousel from "./CustomControlledCarousel";
 import { useRouter } from "next/router";
 import I18n from "../utils/i18n";
+import colors from "../utils/colors";
 
 function PackageCard({
   exercise: { images, title, id, group },
@@ -10,7 +11,8 @@ function PackageCard({
   executions,
   weight,
   rest_seconds,
-  active_seconds
+  active_seconds,
+  number
 }) {
   const router = useRouter();
   const { lang } = router.query;
@@ -31,7 +33,8 @@ function PackageCard({
     <>
       <div className="card m-2 mb-3 m-sm-0 mb-sm-3">
         <CustomControlledCarousel items={images} />
-        <div className="card-body">
+        <div className="card-body position-relative">
+          <div className="counter">{number}</div>
           <h4 className="mb-3">{title}</h4>
           <Link
             href="/[lang]/exercises_group/[pid]"
@@ -63,6 +66,24 @@ function PackageCard({
           </Link>
         </div>
       </div>
+      <style jsx>{`
+        .counter {
+          position: absolute;
+          top: -20px;
+          right: 10px;
+          background-color: ${colors.main};
+          color: white;
+          border-radius: 20px;
+          width: 35px;
+          height: 35px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: white;
+          border-style: solid;
+          font-weight: bold;
+        }
+      `}</style>
     </>
   );
 }

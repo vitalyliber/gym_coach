@@ -16,8 +16,8 @@ function PackageExercisesList({ exercises }) {
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
-          {exercises.map(el => (
-            <PackageCard key={el.id} {...el} />
+          {exercises.map((el, index) => (
+            <PackageCard key={el.id} {...el} number={index + 1} />
           ))}
         </Masonry>
       </div>
