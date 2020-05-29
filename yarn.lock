@@ -3129,6 +3129,11 @@ next@^9.3.4:
     webpack "4.42.0"
     webpack-sources "1.4.3"
 
+nextjs-redirect-locale@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/nextjs-redirect-locale/-/nextjs-redirect-locale-1.0.3.tgz#2fb570299c1a06a1012564526278a58dc02d7ffd"
+  integrity sha512-zAabPSxQb/dhbtsoSfDDaWDyrXqDFFEMonu+c3ihu8kamw7yhW6S1nn142zPY+3Od2c4NMcVGVn2aQaXTW+XUw==
+
 node-fetch@2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
