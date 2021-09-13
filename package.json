@@ -4,7 +4,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start -p 5000",
-    "deploy": "git push dokku@casply.com:gym_coach master"
+    "deploy": "git push dokku@116.203.209.110:gym-coach master"
   },
   "dependencies": {
     "axios": "^0.19.2",
